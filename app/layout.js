@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import LeftMenu from "@/components/LeftMenu";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,8 +12,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="h-full bg-white">
+      <body className={inter.className}>
+        <Providers>
+          <div className="h-full">
+            <LeftMenu>{children}</LeftMenu>
+          </div>
+        </Providers>
+      </body>
     </html>
   );
 }
