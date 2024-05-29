@@ -88,12 +88,18 @@ export default function LeftMenu({ children }) {
                   </TransitionChild>
 
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:bg-zinc-900 px-6 pb-4">
-                    <div className="flex h-16 shrink-0 items-center">
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=orange&shade=600"
-                        alt="Your Company"
+                    <div className="flex items-center space-x-4 pt-8 shrink-0 ">
+                      <Image
+                        src="/cute-face.jpg"
+                        width={100}
+                        height={100}
+                        className="grayscale rounded-full"
+                        alt="Alex Bilozor face"
                       />
+
+                      <span className="text-zinc-800 font-semibold uppercase mt-4">
+                        Alex Bilozor
+                      </span>
                     </div>
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -138,14 +144,18 @@ export default function LeftMenu({ children }) {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white dark:bg-zinc-900 dark:border-zinc-800 px-6 pb-4">
             <div className="flex flex-col pt-8 shrink-0 items-center">
-              <Image
-                src="/cute-face.jpg"
-                width={100}
-                height={100}
-                className="rounded-full"
-                alt="Alex Bilozor face"
-              />
-              <span className="text-zinc-800 font-semibold uppercase mt-4">Alex Bilozor</span>
+              <div className="rounded-full  border border-orange-600 overflow-hidden">
+                <Image
+                  src="/cute-face.jpg"
+                  width={100}
+                  height={100}
+                  className="grayscale"
+                  alt="Alex Bilozor face"
+                />
+              </div>
+              <span className="text-zinc-800 font-semibold uppercase mt-4">
+                Alex Bilozor
+              </span>
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -177,18 +187,18 @@ export default function LeftMenu({ children }) {
                     ))}
                   </ul>
                 </li>
-                
                 <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-orange-600"
-                  >
-                    <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-orange-600"
-                      aria-hidden="true"
-                    />
-                    Settings
-                  </a>
+                  <div className="flex">
+                    {resolvedTheme === "dark" ? (
+                      <span className="rounded-full bg-zinc-800 text-zinc-200 border py-2 px-4">
+                        <FiSun onClick={() => setTheme("light")} className="" />
+                      </span>
+                    ) : (
+                      <span className="rounded-full text-zinc-800 border py-2 px-4">
+                        <FiMoon onClick={() => setTheme("dark")} />
+                      </span>
+                    )}
+                  </div>
                 </li>
               </ul>
             </nav>
@@ -196,7 +206,7 @@ export default function LeftMenu({ children }) {
         </div>
 
         <div className="lg:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between gap-x-4  bg-white dark:bg-zinc-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8 ">
+          <div className="sticky lg:hidden top-0 z-40 flex h-16 shrink-0 items-center justify-between lg:justify-end gap-x-4  bg-white dark:bg-zinc-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8 ">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 dark:text-zinc-400 lg:hidden"
@@ -205,15 +215,17 @@ export default function LeftMenu({ children }) {
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
-            {resolvedTheme === "dark" ? (
-              <span className="rounded-full bg-zinc-800 text-zinc-200 border py-2 px-4">
-                <FiSun onClick={() => setTheme("light")} className="" />
-              </span>
-            ) : (
-              <span className="rounded-full text-zinc-800 border py-2 px-4">
-                <FiMoon onClick={() => setTheme("dark")} />
-              </span>
-            )}
+            <div className="lg:hidden flex">
+              {resolvedTheme === "dark" ? (
+                <span className="rounded-full bg-zinc-800 text-zinc-200 border py-2 px-4">
+                  <FiSun onClick={() => setTheme("light")} className="" />
+                </span>
+              ) : (
+                <span className="rounded-full text-zinc-800 border py-2 px-4">
+                  <FiMoon onClick={() => setTheme("dark")} />
+                </span>
+              )}
+            </div>
           </div>
 
           <main className="py-10">
